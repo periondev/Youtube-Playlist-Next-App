@@ -1,79 +1,95 @@
-import {
-  Link as ChakraLink,
-  Text,
-  Code,
-  List,
-  ListIcon,
-  ListItem,
-} from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
-import { GetStaticProps } from 'next'
+import Image from 'next/image';
+import Head from 'next/head';
+import { Link as ChakraLink, Text, Code, List, ListIcon, ListItem } from '@chakra-ui/react';
+import { Heading, SimpleGrid, Box } from '@chakra-ui/layout';
+import { Hero } from '../components/Hero';
+import { Container } from '../components/Container';
+import { Main } from '../components/Main';
+import { DarkModeSwitch } from '../components/DarkModeSwitch';
+import { CTA } from '../components/CTA';
+import { Footer } from '../components/Footer';
+import { InferGetStaticPropsType, GetStaticProps } from 'next';
+import { Key, ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from 'react';
 
 /* define type of playlistItems resource as Data */
 type Data = {
-  "id": string,
-  "snippet": {  
-    "channelId": string,
-    "title": string,
-    "description": string,
-    "thumbnails": {
+  id: string;
+  snippet: {
+    channelId: string;
+    title: string;
+    description: string;
+    thumbnails: {
       medium: {
-        "url": string,    
-      }
-    },
-    "channelTitle": string,
-    "videoOwnerChannelTitle": string,
-    "videoOwnerChannelId": string,
-    "playlistId": string, 
-    "resourceId": {
-      "kind": string,
-      "videoId": string,
-    }
-  }
+        url: string;
+      };
+    };
+    channelTitle: string;
+    videoOwnerChannelTitle: string;
+    videoOwnerChannelId: string;
+    playlistId: string;
+    resourceId: {
+      kind: string;
+      videoId: string;
+    };
+  };
 };
+
 /* Fetch Youtube API */
-export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) => {
   const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
   const REQUEST_URL = `${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=20&playlistId=${process.env.PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`;
   const response = await fetch(REQUEST_URL);
   const data = await response.json();
   console.log(data);
-  return {
-    props: {
-      data,
-    },
-    revalidate: 30,
+  console.log(typeof data.items);
+  if (!data) {
+    return {
+      notFound: true,
+    };
   }
-}
+  return {
+    props: { data: data.items },
+    revalidate: 30,
+  };
+};
 
-const Index = () => (
-  <Container height="100vh">
-    <Hero />
+const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <Container height='100vh'>
+    <Head>
+      <title>My Youtube Collection</title>
+      <meta name='discription' content='A YouTube playlist with video player'></meta>
+    </Head>
+    <Box>
+      <Hero />
+    </Box>
     <Main>
-      <Text color="text">
-        Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{'this is example '}
-        <Code>TypeScript</Code>.
-      </Text>
+      <Box>
+        <Text color='text'>
+          Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{'this is example '}
+          <Code>TypeScript</Code>.
+        </Text>
+      </Box>
 
-      <List spacing={3} my={0} color="text">
-        <ListItem>
-        
-         
-        </ListItem>
-        <ListItem>
-        
-    
-       
-        </ListItem>
-      </List>
+      <SimpleGrid columns={[1, 2, 3]} spacing={8}>
+        {data.map(
+          (video: { id: string; snippet: { title: string; thumbnails: { medium: {} } } }) => {
+            return (
+              <Box key={video.id}>
+                {/* <Image
+                  width={video.snippet.thumbnails.medium.width}
+                  height={medium.height}
+                  src={medium.url}
+                  alt='MV thumbnail'
+                  style={{ height: 'auto' }}
+                /> */}
+                <Heading as='h5' fontSize='sm' textAlign='left'>
+                  {video.snippet.title}
+                </Heading>
+              </Box>
+            );
+          }
+        )}
+      </SimpleGrid>
     </Main>
 
     <DarkModeSwitch />
@@ -82,6 +98,6 @@ const Index = () => (
     </Footer>
     <CTA />
   </Container>
-)
+);
 
-export default Index
+export default Index;
