@@ -18,7 +18,7 @@ const theme = extendTheme({
       },
       //todo
       heroGradientStart: {
-        default: '#7928CA',
+        default: '#9C9FD9',
         _dark: '#e3a7f9',
       },
       heroGradientEnd: {

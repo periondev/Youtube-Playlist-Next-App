@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import Head from 'next/head';
-import { Link as ChakraLink, Text, Code, List, ListIcon, ListItem } from '@chakra-ui/react';
+import { Link as ChakraLink, Text, Code, List, ListIcon, ListItem, Image } from '@chakra-ui/react';
 import { Heading, SimpleGrid, Box } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
@@ -84,10 +83,9 @@ const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
               <Box key={video.id}>
                 <Image
                   width={video.snippet.thumbnails.medium.width}
-                  height={video.snippet.thumbnails.medium.height}
+                  height='auto'
                   src={video.snippet.thumbnails.medium.url || 'https://via.placeholder.com/300'}
                   alt='MV thumbnail'
-                  style={{ height: 'auto' }}
                 />
                 <Heading as='h5' fontSize='sm' textAlign='left'>
                   {video.snippet.title}
