@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { Link as ChakraLink, Text, Code, List, ListIcon, ListItem, Image } from '@chakra-ui/react';
-import { Heading, SimpleGrid, Box } from '@chakra-ui/layout';
+import { Link as ChakraLink, Text, Image } from '@chakra-ui/react';
+import { Heading, SimpleGrid, Box, Flex, Center } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
 import { Main } from '../components/Main';
@@ -59,17 +59,8 @@ const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
       <title>My Youtube Collection</title>
       <meta name='discription' content='A YouTube playlist with video player'></meta>
     </Head>
-    <Box>
-      <Hero />
-    </Box>
+    <Hero />
     <Main>
-      <Box>
-        <Text color='text'>
-          Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{'this is example '}
-          <Code>TypeScript</Code>.
-        </Text>
-      </Box>
-
       <SimpleGrid columns={[1, 2, 3]} spacing={8}>
         {data.map(
           (video: {
@@ -80,7 +71,7 @@ const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
             };
           }) => {
             return (
-              <Box key={video.id}>
+              <Box key={video.id} justifySelf='center'>
                 <Image
                   width={video.snippet.thumbnails.medium.width}
                   height='auto'
@@ -96,10 +87,9 @@ const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
         )}
       </SimpleGrid>
     </Main>
-
     <DarkModeSwitch />
     <Footer>
-      <Text>Next ❤️ Chakra</Text>
+      <Text>Made by Peri🐢</Text>
     </Footer>
     <CTA />
   </Container>

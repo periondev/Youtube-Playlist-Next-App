@@ -7,24 +7,11 @@ export const CTA = () => (
     <Button
       as={ChakraLink}
       isExternal
-      href='https://chakra-ui.com'
-      variant='outline'
-      colorScheme='green'
-      rounded='button'
-      flexGrow={1}
-      mx={2}
-      width='full'
-    >
-      chakra-ui
-    </Button>
-    <Button
-      as={ChakraLink}
-      isExternal
       href='https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui'
-      variant='solid'
-      colorScheme='green'
+      variant='outline'
+      colorScheme='purple'
       rounded='button'
-      flexGrow={3}
+      flexGrow={2}
       mx={2}
       width='full'
     >
