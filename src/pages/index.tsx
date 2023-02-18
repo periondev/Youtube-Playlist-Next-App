@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { Link as ChakraLink, Text, Image } from '@chakra-ui/react';
 import { Heading, SimpleGrid, Box, Flex, Center, ListItem, List } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
@@ -8,34 +9,45 @@ import { DarkModeSwitch } from '../components/DarkModeSwitch';
 import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
 import { InferGetStaticPropsType, GetStaticProps } from 'next';
-import { Key, ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from 'react';
+import {
+  Key,
+  ReactElement,
+  JSXElementConstructor,
+  ReactFragment,
+  ReactPortal,
+  useState,
+} from 'react';
 
-/*Define type of playlistItems resource 
-according to JSON structure: https://developers.google.com/youtube/v3/docs/playlistItems*/
+/*Define object type of playlistItems resource 
+reference: https://developers.google.com/youtube/v3/docs/playlistItems*/
+type Medium = {
+  medium: {
+    url: string;
+    width: number;
+    height: number;
+  };
+};
+type Snippet = {
+  channelId: string;
+  title: string;
+  description: string;
+  thumbnails: Medium;
+  channelTitle: string;
+  videoOwnerChannelTitle: string;
+  videoOwnerChannelId: string;
+  playlistId: string;
+  resourceId: {
+    kind: string;
+    videoId: string;
+  };
+};
 type Data = {
-  // id: string;
-  // snippet: {
-  //   channelId: string;
-  //   title: string;
-  //   description: string;
-  //   thumbnails: {
-  //     medium: {
-  //       url: string;
-  //       width: number;
-  //       height: number;
-  //     };
-  //   };
-  //   channelTitle: string;
-  //   videoOwnerChannelTitle: string;
-  //   videoOwnerChannelId: string;
-  //   playlistId: string;
-  //   resourceId: {
-  //     kind: string;
-  //     videoId: string;
-  //   };
-  // };
+  id: string;
+  snippet: Snippet;
 };
 
+//todo
+//const Player = dynamic(() => import('../components/Player'), { ssr: false });
 /* Fetch Youtube API */
 export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) => {
   const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
@@ -53,23 +65,23 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
   };
 };
 
-const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <Container height='100vh'>
-    <Head>
-      <title>My Youtube Collection</title>
-      <meta name='discription' content='A YouTube playlist with video player'></meta>
-    </Head>
-    <Hero />
-    <Main>
-      <SimpleGrid columns={[1, 2, 3]} spacing={8}>
-        {data.map(
-          (video: {
-            id: string;
-            snippet: {
-              title: string;
-              thumbnails: { medium: { url: string; width: number; height: number } };
-            };
-          }) => {
+const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [currentVideo, setCurrentVideo] = useState(data[0]);
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <Container height='100vh'>
+      <Head>
+        <title>My Youtube Collection</title>
+        <meta name='discription' content='A YouTube playlist with video player'></meta>
+      </Head>
+      <Hero />
+
+      {/* <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} /> */}
+
+      <Main>
+        <SimpleGrid columns={[1, 2, 3]} spacing={8}>
+          {data.map((video: Data) => {
             return (
               <Box key={video.id}>
                 <Center>
@@ -85,16 +97,15 @@ const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => (
                 </Heading>
               </Box>
             );
-          }
-        )}
-      </SimpleGrid>
-    </Main>
-    <DarkModeSwitch />
-    <Footer>
-      <Text>Made by Peri🐢</Text>
-    </Footer>
-    <CTA />
-  </Container>
-);
-
+          })}
+        </SimpleGrid>
+      </Main>
+      <DarkModeSwitch />
+      <Footer>
+        <Text>Made by Peri🐢</Text>
+      </Footer>
+      <CTA />
+    </Container>
+  );
+};
 export default Index;
