@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
+import { Player } from '../components/Player';
 import { Link as ChakraLink, Text, Image } from '@chakra-ui/react';
 import { Heading, SimpleGrid, Box, Flex, Center, ListItem, List } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
@@ -16,6 +16,7 @@ import {
   ReactFragment,
   ReactPortal,
   useState,
+  useEffect,
 } from 'react';
 
 /*Define object type of playlistItems resource 
@@ -46,8 +47,6 @@ type Data = {
   snippet: Snippet;
 };
 
-//todo
-//const Player = dynamic(() => import('../components/Player'), { ssr: false });
 /* Fetch Youtube API */
 export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) => {
   const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
@@ -68,7 +67,13 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
 const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [currentVideo, setCurrentVideo] = useState(data[0]);
   const [playing, setPlaying] = useState(false);
-
+  const [hasWindow, setHasWindow] = useState(false);
+  //solve Next.js >12 apply react-player hydration failure
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setHasWindow(true);
+    }
+  }, []);
   return (
     <Container height='100vh'>
       <Head>
@@ -76,9 +81,7 @@ const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name='discription' content='A YouTube playlist with video player'></meta>
       </Head>
       <Hero />
-
-      {/* <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} /> */}
-
+      {hasWindow && <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} />}
       <Main>
         <SimpleGrid columns={[1, 2, 3]} spacing={8}>
           {data.map((video: Data) => {
