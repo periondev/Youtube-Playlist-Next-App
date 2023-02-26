@@ -1,14 +1,6 @@
 import Head from 'next/head';
 import { Player } from '../components/Player';
-import {
-  Link as ChakraLink,
-  Text,
-  Image,
-  Card,
-  CardHeader,
-  CardBody,
-  AspectRatio,
-} from '@chakra-ui/react';
+import { Link as ChakraLink, Text, Image, Card, CardBody, AspectRatio } from '@chakra-ui/react';
 import { Heading, SimpleGrid, Box, Flex, Center, ListItem, List } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
@@ -16,16 +8,8 @@ import { Main } from '../components/Main';
 import { DarkModeSwitch } from '../components/DarkModeSwitch';
 import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
-import { InferGetStaticPropsType, GetStaticProps } from 'next';
-import {
-  Key,
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-  useState,
-  useEffect,
-} from 'react';
+import { GetStaticProps } from 'next';
+import { useState, useEffect } from 'react';
 
 /*Define object type of playlistItems resource 
 reference: https://developers.google.com/youtube/v3/docs/playlistItems*/
@@ -72,7 +56,7 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
   };
 };
 
-const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Index = ({ data }) => {
   const [currentVideo, setCurrentVideo] = useState(data[0]);
   const [playing, setPlaying] = useState(false);
   const [hasWindow, setHasWindow] = useState(false);
@@ -91,29 +75,29 @@ const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Hero />
       {hasWindow && <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} />}
       <Main>
-      <SimpleGrid columns={[1, 2, 3]} spacing={14}>
-        {data.map((video: Data) => {
-          return (
-            <Card key={video.id}>
-              <CardBody>
-                <AspectRatio maxW='560px' ratio={16 / 9}>
-                  <Image
-                    // width={video.snippet.thumbnails.medium.width}
-                    // height='auto'
-                    src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
-                    alt='MV thumbnail'
-                  />
-                </AspectRatio>
-                <Heading as='h5' fontSize='sm'>
-                  {video.snippet.title}
-                </Heading>
+        <SimpleGrid columns={[1, 2, 3]} spacing={14}>
+          {data.map((video: Data) => {
+            return (
+              <Card key={video.id}>
+                <CardBody>
+                  <AspectRatio maxW='560px' ratio={16 / 9}>
+                    <Image
+                      // width={video.snippet.thumbnails.medium.width}
+                      // height='auto'
+                      src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
+                      alt='MV thumbnail'
+                    />
+                  </AspectRatio>
+                  <Heading as='h5' fontSize='sm'>
+                    {video.snippet.title}
+                  </Heading>
 
-                <Text>{video.snippet.videoOwnerChannelTitle}</Text>
-              </CardBody>
-            </Card>
-          );
-        })}
-      </SimpleGrid>
+                  <Text>{video.snippet.videoOwnerChannelTitle}</Text>
+                </CardBody>
+              </Card>
+            );
+          })}
+        </SimpleGrid>
       </Main>
       <DarkModeSwitch />
       <Footer>
