@@ -7,7 +7,7 @@ export const CTA = () => (
     <Button
       as={ChakraLink}
       isExternal
-      href='https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui'
+      href='https://github.com/PeriYumYum/youtube-playlist-next-app.git'
       variant='outline'
       colorScheme='purple'
       rounded='button'

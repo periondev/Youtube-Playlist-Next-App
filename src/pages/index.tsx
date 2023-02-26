@@ -1,7 +1,15 @@
 import Head from 'next/head';
 import { Player } from '../components/Player';
-import { Link as ChakraLink, Text, Image, Card, CardBody, AspectRatio } from '@chakra-ui/react';
-import { Heading, SimpleGrid, Box, Flex, Center, ListItem, List } from '@chakra-ui/layout';
+import {
+  Link as ChakraLink,
+  Text,
+  Image,
+  Card,
+  CardBody,
+  AspectRatio,
+  Tooltip,
+} from '@chakra-ui/react';
+import { Heading, SimpleGrid, Box, Flex, Center } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
 import { Main } from '../components/Main';
@@ -56,11 +64,15 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
   };
 };
 
+const scrollToTop = () => {
+  window.scrollTo({ top: 80, behavior: 'smooth' });
+};
+
 const Index = ({ data }) => {
   const [currentVideo, setCurrentVideo] = useState(data[0]);
   const [playing, setPlaying] = useState(false);
   const [hasWindow, setHasWindow] = useState(false);
-  //solve Next.js >12 apply react-player hydration failure
+  //solve React 18 Next.js >12 react-player hydration error
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setHasWindow(true);
@@ -79,21 +91,29 @@ const Index = ({ data }) => {
           {data.map((video: Data) => {
             return (
               <Card key={video.id}>
-                <CardBody>
-                  <AspectRatio maxW='560px' ratio={16 / 9}>
-                    <Image
-                      // width={video.snippet.thumbnails.medium.width}
-                      // height='auto'
-                      src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
-                      alt='MV thumbnail'
-                    />
-                  </AspectRatio>
-                  <Heading as='h5' fontSize='sm'>
-                    {video.snippet.title}
-                  </Heading>
+                <Tooltip label='Click to play'>
+                  <CardBody
+                    onClick={() => {
+                      setCurrentVideo(video);
+                      scrollToTop();
+                      setPlaying(true);
+                    }}
+                  >
+                    <AspectRatio maxW='560px' ratio={16 / 9}>
+                      <Image
+                        // width={video.snippet.thumbnails.medium.width}
+                        // height='auto'
+                        src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
+                        alt='MV thumbnail'
+                      />
+                    </AspectRatio>
+                    <Heading as='h5' fontSize='sm'>
+                      {video.snippet.title}
+                    </Heading>
 
-                  <Text>{video.snippet.videoOwnerChannelTitle}</Text>
-                </CardBody>
+                    <Text>{video.snippet.videoOwnerChannelTitle}</Text>
+                  </CardBody>
+                </Tooltip>
               </Card>
             );
           })}
