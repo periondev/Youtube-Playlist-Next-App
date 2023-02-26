@@ -1,6 +1,14 @@
 import Head from 'next/head';
 import { Player } from '../components/Player';
-import { Link as ChakraLink, Text, Image } from '@chakra-ui/react';
+import {
+  Link as ChakraLink,
+  Text,
+  Image,
+  Card,
+  CardHeader,
+  CardBody,
+  AspectRatio,
+} from '@chakra-ui/react';
 import { Heading, SimpleGrid, Box, Flex, Center, ListItem, List } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
@@ -21,8 +29,8 @@ import {
 
 /*Define object type of playlistItems resource 
 reference: https://developers.google.com/youtube/v3/docs/playlistItems*/
-type Medium = {
-  medium: {
+type High = {
+  high: {
     url: string;
     width: number;
     height: number;
@@ -32,7 +40,7 @@ type Snippet = {
   channelId: string;
   title: string;
   description: string;
-  thumbnails: Medium;
+  thumbnails: High;
   channelTitle: string;
   videoOwnerChannelTitle: string;
   videoOwnerChannelId: string;
@@ -83,25 +91,29 @@ const Index = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Hero />
       {hasWindow && <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} />}
       <Main>
-        <SimpleGrid columns={[1, 2, 3]} spacing={8}>
-          {data.map((video: Data) => {
-            return (
-              <Box key={video.id}>
-                <Center>
+      <SimpleGrid columns={[1, 2, 3]} spacing={14}>
+        {data.map((video: Data) => {
+          return (
+            <Card key={video.id}>
+              <CardBody>
+                <AspectRatio maxW='560px' ratio={16 / 9}>
                   <Image
-                    width={video.snippet.thumbnails.medium.width}
-                    height='auto'
-                    src={video.snippet.thumbnails.medium.url || 'https://via.placeholder.com/300'}
+                    // width={video.snippet.thumbnails.medium.width}
+                    // height='auto'
+                    src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
                     alt='MV thumbnail'
                   />
-                </Center>
-                <Heading as='h5' fontSize='sm' textAlign='center'>
+                </AspectRatio>
+                <Heading as='h5' fontSize='sm'>
                   {video.snippet.title}
                 </Heading>
-              </Box>
-            );
-          })}
-        </SimpleGrid>
+
+                <Text>{video.snippet.videoOwnerChannelTitle}</Text>
+              </CardBody>
+            </Card>
+          );
+        })}
+      </SimpleGrid>
       </Main>
       <DarkModeSwitch />
       <Footer>
