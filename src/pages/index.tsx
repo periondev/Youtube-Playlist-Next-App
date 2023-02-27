@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import { Player } from '../components/Player';
+//import { Player } from '../components/Player';
+import { IframePlayer } from '../components/IframePlayer';
 import {
   Link as ChakraLink,
   Text,
@@ -72,12 +73,12 @@ const Index = ({ data }) => {
   const [currentVideo, setCurrentVideo] = useState(data[0]);
   const [playing, setPlaying] = useState(false);
   const [hasWindow, setHasWindow] = useState(false);
-  //solve React 18 Next.js >12 react-player hydration error
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setHasWindow(true);
-    }
-  }, []);
+  //solve React 18 Next.js >12 react-player hydration error:
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     setHasWindow(true);
+  //   }
+  // }, []);
   return (
     <Container height='100vh'>
       <Head>
@@ -85,7 +86,12 @@ const Index = ({ data }) => {
         <meta name='discription' content='A YouTube playlist with video player'></meta>
       </Head>
       <Hero />
-      {hasWindow && <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} />}
+      {/* {hasWindow && <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} />} */}
+      <Box w={['100%', 560, 640]}>
+        <AspectRatio maxW='100%' ratio={16 / 9}>
+          <IframePlayer id={currentVideo.snippet.resourceId.videoId} />
+        </AspectRatio>
+      </Box>
       <Main>
         <SimpleGrid columns={[1, 2, 3]} spacing={14}>
           {data.map((video: Data) => {
@@ -110,7 +116,6 @@ const Index = ({ data }) => {
                     <Heading as='h5' fontSize='sm'>
                       {video.snippet.title}
                     </Heading>
-
                     <Text>{video.snippet.videoOwnerChannelTitle}</Text>
                   </CardBody>
                 </Tooltip>
