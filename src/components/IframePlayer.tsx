@@ -1,18 +1,23 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { AspectRatio, Box, Center, Flex } from '@chakra-ui/react';
+import { AspectRatio, Box } from '@chakra-ui/react';
 type Props = {
-  id: string;
+  video_id: string;
+  autoPlay: boolean;
 };
 const IframePlayer = (playerProps: Props) => {
-  const { id } = playerProps;
-  const src = `https://www.youtube.com/embed/${id}?enablejsapi=1`;
+  const { video_id, autoPlay } = playerProps;
+  const video_src = `https://www.youtube.com/embed/${video_id}?enablejsapi=1&autoplay=${autoPlay}`;
   return (
-    <iframe
-      title='current video'
-      src={src}
-      width='480px'
-      allow='accelerometer; autoplay; encrypted-media; gyroscope; fullscreen'
-    />
+    <Box w={['100%', 560, 680]} boxShadow='xl' p='5' rounded='md'>
+      <AspectRatio maxW='100%' ratio={16 / 9}>
+        <iframe
+          title='current video'
+          src={video_src}
+          width='480px'
+          allow='accelerometer; autoplay; encrypted-media; gyroscope; fullscreen'
+        />
+      </AspectRatio>
+    </Box>
   );
 };
 

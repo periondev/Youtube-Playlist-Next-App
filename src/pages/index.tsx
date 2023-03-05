@@ -7,10 +7,13 @@ import {
   Image,
   Card,
   CardBody,
+  CardFooter,
   AspectRatio,
   Tooltip,
+  Button,
+  ButtonGroup,
 } from '@chakra-ui/react';
-import { Heading, SimpleGrid, Box, Flex, Center } from '@chakra-ui/layout';
+import { Heading, SimpleGrid, Box, Flex, Center, Stack, Spacer, VStack } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
 import { Main } from '../components/Main';
@@ -19,6 +22,7 @@ import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
 import { GetStaticProps } from 'next';
 import { useState, useEffect } from 'react';
+import { ArrowRightIcon } from '@chakra-ui/icons';
 
 /*Define object type of playlistItems resource 
 reference: https://developers.google.com/youtube/v3/docs/playlistItems*/
@@ -61,7 +65,7 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
   }
   return {
     props: { data: data.items },
-    revalidate: 30,
+    revalidate: 20,
   };
 };
 
@@ -72,13 +76,14 @@ const scrollToTop = () => {
 const Index = ({ data }) => {
   const [currentVideo, setCurrentVideo] = useState(data[0]);
   const [playing, setPlaying] = useState(false);
-  const [hasWindow, setHasWindow] = useState(false);
+  //const [hasWindow, setHasWindow] = useState(false);
   //solve React 18 Next.js >12 react-player hydration error:
   // useEffect(() => {
   //   if (typeof window !== 'undefined') {
   //     setHasWindow(true);
   //   }
   // }, []);
+
   return (
     <Container height='100vh'>
       <Head>
@@ -87,38 +92,39 @@ const Index = ({ data }) => {
       </Head>
       <Hero />
       {/* {hasWindow && <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} />} */}
-      <Box w={['100%', 560, 640]}>
-        <AspectRatio maxW='100%' ratio={16 / 9}>
-          <IframePlayer id={currentVideo.snippet.resourceId.videoId} />
-        </AspectRatio>
-      </Box>
+      <IframePlayer video_id={currentVideo.snippet.resourceId.videoId} autoPlay={playing} />
       <Main>
         <SimpleGrid columns={[1, 2, 3]} spacing={14}>
           {data.map((video: Data) => {
             return (
               <Card key={video.id}>
-                <Tooltip label='Click to play'>
-                  <CardBody
+                <CardBody pb='0'>
+                  <AspectRatio maxW='560px' ratio={16 / 9}>
+                    <Image
+                      src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
+                      alt={`${video.snippet.title} thumbnail`}
+                    />
+                  </AspectRatio>
+                  <Stack mt={3} spacing={2}>
+                    <Heading as='h5' fontSize='sm'>
+                      {video.snippet.title}
+                    </Heading>
+                    <Text>{video.snippet.videoOwnerChannelTitle}</Text>
+                  </Stack>
+                </CardBody>
+                <CardFooter mb='0'>
+                  <Spacer />
+                  <Button
+                    rightIcon={<ArrowRightIcon />}
                     onClick={() => {
                       setCurrentVideo(video);
                       scrollToTop();
                       setPlaying(true);
                     }}
                   >
-                    <AspectRatio maxW='560px' ratio={16 / 9}>
-                      <Image
-                        // width={video.snippet.thumbnails.medium.width}
-                        // height='auto'
-                        src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
-                        alt='MV thumbnail'
-                      />
-                    </AspectRatio>
-                    <Heading as='h5' fontSize='sm'>
-                      {video.snippet.title}
-                    </Heading>
-                    <Text>{video.snippet.videoOwnerChannelTitle}</Text>
-                  </CardBody>
-                </Tooltip>
+                    Play
+                  </Button>
+                </CardFooter>
               </Card>
             );
           })}
