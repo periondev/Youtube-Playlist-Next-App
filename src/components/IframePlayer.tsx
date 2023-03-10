@@ -8,7 +8,7 @@ const IframePlayer = (playerProps: Props) => {
   const { video_id, autoPlay } = playerProps;
   const video_src = `https://www.youtube.com/embed/${video_id}?enablejsapi=1&autoplay=${autoPlay}`;
   return (
-    <Box w={['100%', 560, 680]} boxShadow='xl' p='5' rounded='md'>
+    <Box w={['100%', 600, 640]} boxShadow='xl' my={10}>
       <AspectRatio maxW='100%' ratio={16 / 9}>
         <iframe
           title='current video'

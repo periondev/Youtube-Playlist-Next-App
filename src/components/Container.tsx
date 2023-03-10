@@ -5,10 +5,10 @@ export const Container = (props: FlexProps) => (
     direction='column'
     alignItems='center'
     justifyContent='flex-start'
-    bg='gray.50'
+    bg='#BFC9CA'
     color='black'
     _dark={{
-      bg: 'gray.900',
+      bg: '#1B2631',
       color: 'white',
     }}
     transition='all 0.15s ease-out'

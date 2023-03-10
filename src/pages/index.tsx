@@ -85,7 +85,7 @@ const Index = ({ data }) => {
   // }, []);
 
   return (
-    <Container height='100vh'>
+    <Container>
       <Head>
         <title>My Youtube Collection</title>
         <meta name='discription' content='A YouTube playlist with video player'></meta>
@@ -94,25 +94,34 @@ const Index = ({ data }) => {
       {/* {hasWindow && <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} />} */}
       <IframePlayer video_id={currentVideo.snippet.resourceId.videoId} autoPlay={playing} />
       <Main>
-        <SimpleGrid columns={[1, 2, 3]} spacing={14}>
+        <SimpleGrid columns={[1, 2, 3]} spacingX={10} spacingY={14}>
           {data.map((video: Data) => {
             return (
-              <Card key={video.id}>
-                <CardBody pb='0'>
+              <Card
+                key={video.id}
+                borderRadius='xl'
+                bg='#E5E8E8'
+                _dark={{
+                  bg: '#283747',
+                  color: 'white',
+                }}
+              >
+                <CardBody p='0'>
                   <AspectRatio maxW='560px' ratio={16 / 9}>
                     <Image
                       src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
                       alt={`${video.snippet.title} thumbnail`}
+                      borderTopRadius='xl'
                     />
                   </AspectRatio>
-                  <Stack mt={3} spacing={2}>
+                  <Stack px={5} mt={3} spacing={2}>
                     <Heading as='h5' fontSize='sm'>
                       {video.snippet.title}
                     </Heading>
-                    <Text>{video.snippet.videoOwnerChannelTitle}</Text>
+                    <Text color='text'>{video.snippet.videoOwnerChannelTitle}</Text>
                   </Stack>
                 </CardBody>
-                <CardFooter mb='0'>
+                <CardFooter mb='0' pt='0'>
                   <Spacer />
                   <Button
                     rightIcon={<ArrowRightIcon />}
