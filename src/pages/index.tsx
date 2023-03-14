@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { FaPlay } from 'react-icons/fa';
 //import { Player } from '../components/Player';
 import { IframePlayer } from '../components/IframePlayer';
 import {
@@ -9,9 +10,7 @@ import {
   CardBody,
   CardFooter,
   AspectRatio,
-  Tooltip,
   Button,
-  ButtonGroup,
 } from '@chakra-ui/react';
 import { Heading, SimpleGrid, Box, Flex, Center, Stack, Spacer, VStack } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
@@ -22,7 +21,6 @@ import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
 import { GetStaticProps } from 'next';
 import { useState, useEffect } from 'react';
-import { ArrowRightIcon } from '@chakra-ui/icons';
 
 /*Define object type of playlistItems resource 
 reference: https://developers.google.com/youtube/v3/docs/playlistItems*/
@@ -70,7 +68,7 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
 };
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 80, behavior: 'smooth' });
+  window.scrollTo({ top: 70, behavior: 'smooth' });
 };
 
 const Index = ({ data }) => {
@@ -114,24 +112,27 @@ const Index = ({ data }) => {
                       borderTopRadius='xl'
                     />
                   </AspectRatio>
-                  <Stack px={5} mt={3} spacing={2}>
-                    <Heading as='h5' fontSize='sm'>
+                  <Stack px={4} mt={4} spacing={2}>
+                    <Heading as='h5' fontSize='md'>
                       {video.snippet.title}
                     </Heading>
                     <Text color='text'>{video.snippet.videoOwnerChannelTitle}</Text>
                   </Stack>
                 </CardBody>
-                <CardFooter mb='0' pt='0'>
+                <CardFooter p={4} pt='0'>
                   <Spacer />
                   <Button
-                    rightIcon={<ArrowRightIcon />}
                     onClick={() => {
                       setCurrentVideo(video);
                       scrollToTop();
                       setPlaying(true);
                     }}
+                    variant='outline'
+                    colorScheme='teal'
+                    rounded='xl'
+                    size='md'
                   >
-                    Play
+                    <FaPlay />
                   </Button>
                 </CardFooter>
               </Card>
@@ -141,9 +142,11 @@ const Index = ({ data }) => {
       </Main>
       <DarkModeSwitch />
       <Footer>
-        <Text>Made by Peri🐢</Text>
+        <Center m={3}>
+          <Text>Made by Peri🐢</Text>
+        </Center>
+        <CTA />
       </Footer>
-      <CTA />
     </Container>
   );
 };

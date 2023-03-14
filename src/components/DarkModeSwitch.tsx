@@ -5,15 +5,16 @@ export const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === 'dark';
   return (
-    <Tooltip label='Try me!'>
+    <Tooltip label={isDark ? 'Turn on' : 'Turn off'}>
       <IconButton
         position='fixed'
         top={4}
         right={4}
-        icon={isDark ? <SunIcon /> : <MoonIcon />}
+        icon={isDark ? <SunIcon boxSize={5} /> : <MoonIcon boxSize={5} />}
         aria-label='Toggle Theme'
-        colorScheme='orange'
+        colorScheme='purple'
         onClick={toggleColorMode}
+        rounded='button'
       />
     </Tooltip>
   );

@@ -16,7 +16,6 @@ const theme = extendTheme({
         default: '#266E72',
         _dark: '#AEC9CA',
       },
-      //todo
       heroGradientStart: {
         default: '#9C9FD9',
         _dark: '#e3a7f9',
@@ -26,8 +25,9 @@ const theme = extendTheme({
         _dark: '#fbec8f',
       },
     },
+    //rounded border
     radii: {
-      button: '12px',
+      button: 'xl',
     },
   },
   colors: {
@@ -36,14 +36,5 @@ const theme = extendTheme({
   fonts,
   breakpoints,
 });
-
-// heroGradientStart: {
-//   default: '#7928CA',
-//   _dark: '#e3a7f9',
-// },
-// heroGradientEnd: {
-//   default: '#FF0080',
-//   _dark: '#fbec8f',
-// },
 
 export default theme;

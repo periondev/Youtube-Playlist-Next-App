@@ -1,21 +1,21 @@
-import { Link as ChakraLink, Button } from '@chakra-ui/react';
-
-import { Container } from './Container';
+import { Link as ChakraLink, Button, Flex } from '@chakra-ui/react';
 
 export const CTA = () => (
-  <Container flexDirection='row' position='fixed' bottom={0} width='full' maxWidth='3xl' py={3}>
+  <Flex w='60vw' maxW='xl'>
     <Button
       as={ChakraLink}
       isExternal
       href='https://github.com/PeriYumYum/youtube-playlist-next-app.git'
       variant='outline'
-      colorScheme='purple'
+      color='teal'
+      border='2px'
+      borderColor='teal'
+      colorScheme='blackAlpha'
       rounded='button'
       flexGrow={2}
       mx={2}
-      width='full'
     >
       View Repo
     </Button>
-  </Container>
+  </Flex>
 );
