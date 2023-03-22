@@ -1,5 +1,8 @@
 {
+  "name": "youtube-playlist-next-app",
+  "version": "1.0.0",
   "private": true,
+  "description": "A Next.js web app presents a Youtube playlist with cards.",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -16,8 +19,7 @@
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
-    "react-player": "^2.11.2"
+    "react-icons": "^4.8.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
