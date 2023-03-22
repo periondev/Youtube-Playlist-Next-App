@@ -12,9 +12,14 @@ export const DarkModeSwitch = () => {
         right={4}
         icon={isDark ? <SunIcon boxSize={5} /> : <MoonIcon boxSize={5} />}
         aria-label='Toggle Theme'
-        colorScheme='purple'
         onClick={toggleColorMode}
         rounded='button'
+        bg='#bab1b3'
+        _hover={{ bg: '#948589' }}
+        _dark={{
+          bg: '#353D40',
+          _hover: { bg: '#536063' },
+        }}
       />
     </Tooltip>
   );

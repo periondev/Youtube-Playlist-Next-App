@@ -1,6 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
-
-const fonts = { mono: `'Menlo', monospace` };
+import '@fontsource/kumbh-sans';
 
 const breakpoints = {
   sm: '40em',
@@ -17,11 +16,11 @@ const theme = extendTheme({
         _dark: '#AEC9CA',
       },
       heroGradientStart: {
-        default: '#9C9FD9',
+        default: '#A3072D',
         _dark: '#e3a7f9',
       },
       heroGradientEnd: {
-        default: '#FF0080',
+        default: '#FB8A7A',
         _dark: '#fbec8f',
       },
     },
@@ -33,7 +32,9 @@ const theme = extendTheme({
   colors: {
     black: '#16161D',
   },
-  fonts,
+  fonts: {
+    hero: `"Kumbh Sans", sans-serif`,
+  },
   breakpoints,
 });
 

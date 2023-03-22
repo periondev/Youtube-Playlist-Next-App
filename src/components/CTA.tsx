@@ -10,7 +10,6 @@ export const CTA = () => (
       color='teal'
       border='2px'
       borderColor='teal'
-      colorScheme='blackAlpha'
       rounded='button'
       flexGrow={2}
       mx={2}

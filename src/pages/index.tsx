@@ -1,9 +1,7 @@
 import Head from 'next/head';
 import { FaPlay } from 'react-icons/fa';
-//import { Player } from '../components/Player';
 import { IframePlayer } from '../components/IframePlayer';
 import {
-  Link as ChakraLink,
   Text,
   Image,
   Card,
@@ -11,8 +9,9 @@ import {
   CardFooter,
   AspectRatio,
   Button,
+  Link,
 } from '@chakra-ui/react';
-import { Heading, SimpleGrid, Box, Flex, Center, Stack, Spacer, VStack } from '@chakra-ui/layout';
+import { Heading, SimpleGrid, Center, Stack, Spacer } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
 import { Main } from '../components/Main';
@@ -20,7 +19,7 @@ import { DarkModeSwitch } from '../components/DarkModeSwitch';
 import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
 import { GetStaticProps } from 'next';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 /*Define object type of playlistItems resource 
 reference: https://developers.google.com/youtube/v3/docs/playlistItems*/
@@ -74,14 +73,6 @@ const scrollToTop = () => {
 const Index = ({ data }) => {
   const [currentVideo, setCurrentVideo] = useState(data[0]);
   const [playing, setPlaying] = useState(false);
-  //const [hasWindow, setHasWindow] = useState(false);
-  //solve React 18 Next.js >12 react-player hydration error:
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     setHasWindow(true);
-  //   }
-  // }, []);
-
   return (
     <Container>
       <Head>
@@ -89,7 +80,6 @@ const Index = ({ data }) => {
         <meta name='discription' content='A YouTube playlist with video player'></meta>
       </Head>
       <Hero />
-      {/* {hasWindow && <Player id={currentVideo.snippet.resourceId.videoId} playing={playing} />} */}
       <IframePlayer video_id={currentVideo.snippet.resourceId.videoId} autoPlay={playing} />
       <Main>
         <SimpleGrid columns={[1, 2, 3]} spacingX={10} spacingY={14}>
@@ -98,9 +88,9 @@ const Index = ({ data }) => {
               <Card
                 key={video.id}
                 borderRadius='xl'
-                bg='#E5E8E8'
+                bg='#faf9f9'
                 _dark={{
-                  bg: '#283747',
+                  bg: '#242A2B',
                   color: 'white',
                 }}
               >
@@ -143,7 +133,13 @@ const Index = ({ data }) => {
       <DarkModeSwitch />
       <Footer>
         <Center m={3}>
-          <Text>Made by Peri🐢</Text>
+          <Text>
+            Powered and Designed by{' '}
+            <Link href='https://github.com/PeriYumYum' isExternal>
+              Peri
+            </Link>
+            👒 ©2023
+          </Text>
         </Center>
         <CTA />
       </Footer>
