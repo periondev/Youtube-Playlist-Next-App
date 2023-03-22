@@ -136,9 +136,9 @@ const Index = ({ data }) => {
           <Text>
             Powered and Designed by{' '}
             <Link href='https://github.com/PeriYumYum' isExternal>
-              Peri
-            </Link>
-            👒 ©2023
+              Peri👒
+            </Link>{' '}
+            ©2023
           </Text>
         </Center>
         <CTA />
