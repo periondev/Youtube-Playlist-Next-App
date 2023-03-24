@@ -133,7 +133,7 @@ const Index = ({ data }) => {
       <DarkModeSwitch />
       <Footer>
         <VStack m={3}>
-          <Text>
+          <Text fontSize='lg'>
             Powered and Designed by{' '}
             <Link href='https://github.com/PeriYumYum' isExternal>
               Peri👒
@@ -144,9 +144,11 @@ const Index = ({ data }) => {
         </VStack>
       </Footer>
       <Box pos='relative' bottom='0'>
-        <Link href='https://www.flaticon.com/free-icons/lesson' title='lesson icons' isExternal>
-          Lesson icons created by Freepik - Flaticon
-        </Link>
+        <Text color='teal'>
+          <Link href='https://www.flaticon.com/free-icons/lesson' title='lesson icons' isExternal>
+            Lesson icons created by Freepik - Flaticon
+          </Link>
+        </Text>
       </Box>
     </Container>
   );
