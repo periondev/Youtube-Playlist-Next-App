@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { FaPlay } from 'react-icons/fa';
 import { IframePlayer } from '../components/IframePlayer';
 import {
@@ -75,10 +74,6 @@ const Index = ({ data }) => {
   const [playing, setPlaying] = useState(false);
   return (
     <Container>
-      <Head>
-        <title>My Youtube Collection</title>
-        <meta name='discription' content='A YouTube playlist with video player'></meta>
-      </Head>
       <Hero />
       <IframePlayer video_id={currentVideo.snippet.resourceId.videoId} autoPlay={playing} />
       <Main>

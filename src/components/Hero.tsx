@@ -1,7 +1,12 @@
 import { Box, Flex, Heading, Image } from '@chakra-ui/react';
-
+import Head from 'next/head';
 export const Hero = ({ title }: { title: string }) => (
   <Box>
+    <Head>
+      <title>My Youtube Collection</title>
+      <meta name='discription' content='A YouTube playlist with video player' />
+      <link rel='icon' href='/favicon.ico' />
+    </Head>
     <Flex
       justify='center'
       align='center'
