@@ -11,7 +11,7 @@ import {
   Button,
   Link,
 } from '@chakra-ui/react';
-import { Heading, SimpleGrid, Center, Stack, Spacer } from '@chakra-ui/layout';
+import { Heading, SimpleGrid, Center, Stack, Spacer, HStack, VStack, Box } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
 import { Main } from '../components/Main';
@@ -132,7 +132,7 @@ const Index = ({ data }) => {
       </Main>
       <DarkModeSwitch />
       <Footer>
-        <Center m={3}>
+        <VStack m={3}>
           <Text>
             Powered and Designed by{' '}
             <Link href='https://github.com/PeriYumYum' isExternal>
@@ -140,9 +140,14 @@ const Index = ({ data }) => {
             </Link>{' '}
             ©2023
           </Text>
-        </Center>
-        <CTA />
+          <CTA />
+        </VStack>
       </Footer>
+      <Box pos='relative' bottom='0'>
+        <Link href='https://www.flaticon.com/free-icons/lesson' title='lesson icons' isExternal>
+          Lesson icons created by Freepik - Flaticon
+        </Link>
+      </Box>
     </Container>
   );
 };
