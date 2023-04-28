@@ -44,11 +44,12 @@ const scrollToTop = () => {
 
 const Index = ({ data }) => {
   const [currentVideo, setCurrentVideo] = useState(data[0]);
-  const [playing, setPlaying] = useState(false);
+  // const [playing, setPlaying] = useState(false);
+  // <IframePlayer autoPlay={playing}>
   return (
     <Container>
       <Hero />
-      <IframePlayer video_id={currentVideo.snippet.resourceId.videoId} autoPlay={playing} />
+      <IframePlayer video_id={currentVideo.snippet.resourceId.videoId} />
       <Main>
         <SimpleGrid columns={[1, 2, 3]} spacingX={10} spacingY={14}>
           {data.map((video: Data) => (
@@ -84,7 +85,7 @@ const Index = ({ data }) => {
                   onClick={() => {
                     setCurrentVideo(video);
                     scrollToTop();
-                    setPlaying(true);
+                    //setPlaying(true);
                   }}
                   variant='outline'
                   colorScheme='teal'
