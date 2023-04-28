@@ -19,34 +19,7 @@ import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
 import { GetStaticProps } from 'next';
 import { useState } from 'react';
-
-// /*Define object type of playlistItems resource
-// reference: https://developers.google.com/youtube/v3/docs/playlistItems*/
-type High = {
-  high: {
-    url: string;
-    width: number;
-    height: number;
-  };
-};
-type Snippet = {
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: High;
-  channelTitle: string;
-  videoOwnerChannelTitle: string;
-  videoOwnerChannelId: string;
-  playlistId: string;
-  resourceId: {
-    kind: string;
-    videoId: string;
-  };
-};
-type Data = {
-  id: string;
-  snippet: Snippet;
-};
+import { Data } from '../lib/types';
 
 /* Fetch Youtube API */
 export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) => {
@@ -91,6 +64,7 @@ const Index = ({ data }) => {
               <CardBody p='0'>
                 <AspectRatio maxW='560px' ratio={16 / 9}>
                   <Image
+                    title='thumb nail'
                     src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
                     alt={`${video.snippet.title} thumbnail`}
                     borderTopRadius='xl'
@@ -106,6 +80,7 @@ const Index = ({ data }) => {
               <CardFooter p={4} pt='0'>
                 <Spacer />
                 <Button
+                  title='play button'
                   onClick={() => {
                     setCurrentVideo(video);
                     scrollToTop();
