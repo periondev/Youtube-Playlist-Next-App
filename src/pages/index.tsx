@@ -70,6 +70,7 @@ const Index = ({ data }) => {
                     src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
                     alt={`${video.snippet.title} thumbnail`}
                     borderTopRadius='xl'
+                    loading='lazy'
                   />
                 </AspectRatio>
                 <Box p={4}>
