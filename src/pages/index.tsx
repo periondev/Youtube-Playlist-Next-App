@@ -1,15 +1,6 @@
 import { FaPlay } from 'react-icons/fa';
 import { IframePlayer } from '../components/IframePlayer';
-import {
-  Text,
-  Image,
-  Card,
-  CardBody,
-  CardFooter,
-  AspectRatio,
-  Button,
-  Link,
-} from '@chakra-ui/react';
+import { Text, Card, CardBody, CardFooter, AspectRatio, Button, Link } from '@chakra-ui/react';
 import { Heading, SimpleGrid, Spacer, VStack, Box } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
@@ -19,13 +10,16 @@ import { ScrollToTopBtn } from '../components/ScrollButton';
 import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
 import { GetStaticProps } from 'next';
+import Image from 'next/image';
 import { useState } from 'react';
 import { Data } from '../lib/types';
 
 /* Fetch Youtube API */
 export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) => {
   const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
-  const REQUEST_URL = `${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=20&playlistId=${process.env.PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`;
+  const REQUEST_URL =
+    `${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=20&playlistId=${process.env.PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}` ||
+    'http://127.0.0.1';
   const response = await fetch(REQUEST_URL);
   const data = await response.json();
   if (!data) {
@@ -47,6 +41,8 @@ const Index = ({ data }) => {
   const [currentVideo, setCurrentVideo] = useState(data[0]);
   // const [playing, setPlaying] = useState(false);
   // <IframePlayer autoPlay={playing}>
+  const ratio = 16 / 9;
+
   return (
     <Container>
       <Hero />
@@ -56,7 +52,7 @@ const Index = ({ data }) => {
           {data.map((video: Data) => (
             <Card
               key={video.id}
-              borderRadius='xl'
+              borderRadius='1em'
               bg='#faf9f9'
               _dark={{
                 bg: '#242A2B',
@@ -64,13 +60,14 @@ const Index = ({ data }) => {
               }}
             >
               <CardBody p='0'>
-                <AspectRatio maxW='560px' ratio={16 / 9}>
+                <AspectRatio ratio={ratio}>
                   <Image
                     title='thumb nail'
                     src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
                     alt={`${video.snippet.title} thumbnail`}
-                    borderTopRadius='xl'
-                    loading='lazy'
+                    style={{ borderTopLeftRadius: '1em', borderTopRightRadius: '1em' }}
+                    width={560}
+                    height={560 / ratio}
                   />
                 </AspectRatio>
                 <Box p={4}>
