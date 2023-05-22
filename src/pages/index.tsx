@@ -15,6 +15,7 @@ import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
 import { Main } from '../components/Main';
 import { DarkModeSwitch } from '../components/DarkModeSwitch';
+import { ScrollToTopBtn } from '../components/ScrollButton';
 import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
 import { GetStaticProps } from 'next';
@@ -34,7 +35,7 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
   }
   return {
     props: { data: data.items },
-    revalidate: 20,
+    revalidate: 15,
   };
 };
 
@@ -100,10 +101,11 @@ const Index = ({ data }) => {
         </SimpleGrid>
       </Main>
       <DarkModeSwitch />
+      <ScrollToTopBtn />
       <Footer>
         <VStack m={3} textAlign='center'>
           <Text fontSize='lg'>
-            Powered and Designed by{' '}
+            Designed and Built by{' '}
             <Link href='https://github.com/PeriYumYum' isExternal>
               Peri👒
             </Link>{' '}

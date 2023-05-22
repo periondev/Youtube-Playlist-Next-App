@@ -5,7 +5,7 @@ export const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === 'dark';
   return (
-    <Tooltip label={isDark ? 'Turn on' : 'Turn off'}>
+    <Tooltip label={isDark ? 'Turn light' : 'Turn dark'}>
       <IconButton
         position='fixed'
         top={4}
@@ -14,6 +14,7 @@ export const DarkModeSwitch = () => {
         aria-label='Toggle Theme'
         onClick={toggleColorMode}
         rounded='button'
+        opacity={0.75}
         bg='#bab1b3'
         _hover={{ bg: '#948589' }}
         _dark={{
