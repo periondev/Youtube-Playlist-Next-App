@@ -66,7 +66,6 @@ const Index = ({ data }) => {
               <CardBody p='0'>
                 <AspectRatio maxW='560px' ratio={16 / 9}>
                   <Image
-                    title='thumb nail'
                     src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
                     alt={`${video.snippet.title} thumbnail`}
                     borderTopRadius='xl'
@@ -83,7 +82,7 @@ const Index = ({ data }) => {
               <CardFooter p={4} pt='0'>
                 <Spacer />
                 <Button
-                  title='play button'
+                  title='Play video'
                   onClick={() => {
                     setCurrentVideo(video);
                     scrollToTop();
