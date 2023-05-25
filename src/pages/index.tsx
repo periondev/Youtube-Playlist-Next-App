@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
 };
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 70, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 const Index = ({ data }) => {
