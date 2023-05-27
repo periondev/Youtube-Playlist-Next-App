@@ -23,7 +23,7 @@ import { useState } from 'react';
 import { Data } from '../lib/types';
 
 /* Fetch Youtube API */
-export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) => {
+export const getStaticProps: GetStaticProps<{ data: Data[] }> = async () => {
   const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
   const REQUEST_URL = `${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=20&playlistId=${process.env.PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`;
   const response = await fetch(REQUEST_URL);
@@ -35,7 +35,6 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async (context) 
   }
   return {
     props: { data: data.items },
-    revalidate: 15,
   };
 };
 
