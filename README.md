@@ -1,17 +1,21 @@
 # My Youtube Collection🎬🎵
 
-- A Next.js web application showcasing video information cards retrieved from my youtube playlist
-- There is also a video player enable to click and play
+- The Next.js web application showcasing video information cards retrieved from my youtube playlist
+- A video player allows user to click and play video
 - Support toggling Dark Mode
 
 # Demo
 
-The app is deploying via Vercel, welcome to visit👉: https://youtube-playlist-next-app.vercel.app/
+My Youtube Collection is deploying via Vercel, welcome to visit: https://youtube-playlist-next-app.vercel.app/
+
+<img alt="screenshot" src="Preview/light-screen(1080p - screen).png" width="640px" />
+<img alt="screenshot" src="Preview/dark-screen(1080p - screen).png" width="640px" />
+<img alt="screenshot" src="Preview/light-full-screen(1080p - screen).png" width="640px" />
+<img alt="screenshot" src="Preview/dark-full-screen(1080p - screen).png" width="640px" />
 
 # Tech
 
 - Learn TypeScript with Next.js React app
 - Use Chakra UI as React component library
-- Use incremental static regeneration (ISR) to fetch Youtube Data API
-- Render essential video information on the page : video thumbnail, video title and channel title
-- Embed a video player using the IFrame Player API
+- Use static site generation (SSG) to fetch Youtube Data API
+- Use IFrame Player API to embed a video player
