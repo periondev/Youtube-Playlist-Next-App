@@ -8,10 +8,10 @@
 
 My Youtube Collection is deploying via Vercel, welcome to visit: https://youtube-playlist-next-app.vercel.app/
 
-<img alt="screenshot" src="Preview/light-screen(1080p - screen).png" width="640px" />
-<img alt="screenshot" src="Preview/dark-screen(1080p - screen).png" width="640px" />
-<img alt="screenshot" src="Preview/light-full-screen(1080p - screen).png" width="640px" />
-<img alt="screenshot" src="Preview/dark-full-screen(1080p - screen).png" width="640px" />
+<img alt="screenshot" src="Preview/light-screen-wide.png" width="640px" />
+<img alt="screenshot" src="Preview/dark-screen-wide.png" width="640px" />
+<img alt="screenshot" src="Preview/light-screen-full.png" width="640px" />
+<img alt="screenshot" src="Preview/dark-screen-full.png" width="640px" />
 
 # Tech
 
