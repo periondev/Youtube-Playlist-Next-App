@@ -1,17 +1,17 @@
 # My Youtube Collection🎬🎵
 
-- The Next.js web application showcasing video information cards retrieved from my youtube playlist
-- A video player allows user to click and play video
+- The Next.js web application showcases video information cards retrieved from my youtube playlist
+- Contains a video player that allows users to click and play videos in the playlist.
 - Support toggling Dark Mode
 
 # Demo
 
-My Youtube Collection is deploying via Vercel, welcome to visit: https://youtube-playlist-next-app.vercel.app/
+My Youtube Collection is deploying via Vercel, welcome to visit: https://my-youtube-collection.vercel.app/
 
-<img alt="screenshot" src="Preview/light-screen-wide.png" width="640px" />
-<img alt="screenshot" src="Preview/dark-screen-wide.png" width="640px" />
-<img alt="screenshot" src="Preview/light-screen-full.png" width="640px" />
-<img alt="screenshot" src="Preview/dark-screen-full.png" width="640px" />
+<img alt="screenshot" src="Preview-Images/light-screen-wide.png" width="640px" />
+<img alt="screenshot" src="Preview-Images/dark-screen-wide.png" width="640px" />
+<img alt="screenshot" src="Preview-Images/light-screen-full.png" width="640px" />
+<img alt="screenshot" src="Preview-Images/dark-screen-full.png" width="640px" />
 
 # Tech
 
