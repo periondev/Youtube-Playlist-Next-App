@@ -35,6 +35,7 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async () => {
   }
   return {
     props: { data: data.items },
+    revalidate: 15,
   };
 };
 
