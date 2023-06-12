@@ -15,7 +15,7 @@ import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
 import { Main } from '../components/Main';
 import { DarkModeSwitch } from '../components/DarkModeSwitch';
-import { ScrollToTopBtn } from '../components/ScrollButton';
+import { ScrollButton } from '../components/ScrollButton';
 import { CTA } from '../components/CTA';
 import { Footer } from '../components/Footer';
 import { GetStaticProps } from 'next';
@@ -101,7 +101,7 @@ const Index = ({ data }) => {
         </SimpleGrid>
       </Main>
       <DarkModeSwitch />
-      <ScrollToTopBtn />
+      <ScrollButton />
       <Footer>
         <VStack m={3} textAlign='center'>
           <Text fontSize='lg'>
