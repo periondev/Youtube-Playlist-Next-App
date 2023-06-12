@@ -17,5 +17,5 @@ My Youtube Collection is deploying via Vercel, welcome to visit: https://my-yout
 
 - Learn TypeScript with Next.js React app
 - Use Chakra UI as React component library
-- Use static site generation (SSG) to fetch Youtube Data API
+- Use Incremental Static Regeneration (ISR) to fetch Youtube Data API and update static page
 - Use IFrame Player API to embed a video player
