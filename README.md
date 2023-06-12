@@ -1,8 +1,9 @@
 # My Youtube Collection🎬🎵
 
 - The Next.js web application showcases video information cards retrieved from my youtube playlist
-- Contains a video player that allows users to click and play videos in the playlist.
+- Contain a video player that allows users to click and play videos in the playlist
 - Support toggling Dark Mode
+- Scroll button allows users to quickly reach the bottom or top of the page
 
 # Demo
 
