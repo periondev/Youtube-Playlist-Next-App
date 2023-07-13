@@ -13,7 +13,7 @@ import {
 import { Heading, SimpleGrid, Spacer, VStack, Box } from '@chakra-ui/layout';
 import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
-import { Main } from '../components/Main';
+import { MainArea } from '../components/MainArea';
 import { DarkModeSwitch } from '../components/DarkModeSwitch';
 import { ScrollButton } from '../components/ScrollButton';
 import { CTA } from '../components/CTA';
@@ -51,8 +51,8 @@ const Index = ({ data }) => {
     <Container>
       <Hero />
       <IframePlayer video_id={currentVideo.snippet.resourceId.videoId} />
-      <Main>
-        <SimpleGrid columns={[1, 2, 3]} spacingX={10} spacingY={14}>
+      <MainArea>
+        <SimpleGrid columns={[1, 2, 3]} spacingX={[2, 6, 8]} spacingY={10}>
           {data.map((video: Data) => (
             <Card
               key={video.id}
@@ -99,7 +99,7 @@ const Index = ({ data }) => {
             </Card>
           ))}
         </SimpleGrid>
-      </Main>
+      </MainArea>
       <DarkModeSwitch />
       <ScrollButton />
       <Footer>
