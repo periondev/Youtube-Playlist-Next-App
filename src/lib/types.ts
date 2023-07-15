@@ -1,5 +1,5 @@
-// /*Define object type of playlistItems resource
-// reference: https://developers.google.com/youtube/v3/docs/playlistItems*/
+// Define object type of playlistItems resource
+// Reference: https://developers.google.com/youtube/v3/docs/playlistItems/
 
 type High = {
   high: {
