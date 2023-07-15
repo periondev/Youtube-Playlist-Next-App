@@ -25,7 +25,8 @@ import { Data } from '../lib/types';
 /* Fetch Youtube API */
 export const getStaticProps: GetStaticProps<{ data: Data[] }> = async () => {
   const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
-  const REQUEST_URL = `${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=20&playlistId=${process.env.PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`;
+  const videoCount = 30; // 0 ~ 50
+  const REQUEST_URL = `${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=${videoCount}&playlistId=${process.env.PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`;
   const response = await fetch(REQUEST_URL);
   const data = await response.json();
   if (!data) {
@@ -40,7 +41,7 @@ export const getStaticProps: GetStaticProps<{ data: Data[] }> = async () => {
 };
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0 });
 };
 
 const Index = ({ data }) => {
