@@ -7,7 +7,7 @@ export const ScrollButton = () => {
   const [showBottomBtn, setShowBottomBtn] = useState(true);
 
   const toggleVisibility = () => {
-    if (window.scrollY > 900) {
+    if (window.scrollY > 1200) {
       setShowTopBtn(true);
       setShowBottomBtn(false);
     } else {
