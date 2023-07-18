@@ -12,7 +12,7 @@ export const Hero = ({ title }: { title: string }) => (
       <Box mr={3} boxSize='6vw'>
         <Image title='logo' src='/android-chrome-192x192.png' />
       </Box>
-      <Heading fontFamily='hero' fontSize='6vw'>
+      <Heading fontFamily='hero' as='h1' fontSize='6vw'>
         {title}
       </Heading>
     </Flex>

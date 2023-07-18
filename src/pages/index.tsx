@@ -70,11 +70,11 @@ const Index = ({ data }) => {
                     src={video.snippet.thumbnails.high.url || 'https://via.placeholder.com/300'}
                     alt={`${video.snippet.title} thumbnail`}
                     borderTopRadius='xl'
-                    loading='lazy'
+                    loading='eager'
                   />
                 </AspectRatio>
                 <Box p={4}>
-                  <Heading as='h5' fontSize='md'>
+                  <Heading as='h2' size='sm'>
                     {video.snippet.title}
                   </Heading>
                   <Text color='text'>{video.snippet.videoOwnerChannelTitle}</Text>
