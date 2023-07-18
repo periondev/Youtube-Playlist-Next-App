@@ -9,8 +9,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>My Youtube Collection</title>
-        <meta name='discription' content='A YouTube playlist with video player' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='discription'
+          content='Beautiful and minimal player as an abstraction of Youtube Playlist, 
+          allowing users to play audiovisual content on the card intuitively.'
+        />
       </Head>
       <ChakraProvider theme={theme}>
         <GoogleAnalytics trackPageViews strategy='lazyOnload' />
