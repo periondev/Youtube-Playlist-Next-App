@@ -7,12 +7,16 @@ export const ScrollButton = () => {
   const [showBottomBtn, setShowBottomBtn] = useState(true);
 
   const toggleVisibility = () => {
-    if (window.scrollY > 1200) {
-      setShowTopBtn(true);
-      setShowBottomBtn(false);
-    } else {
-      setShowTopBtn(false);
-      setShowBottomBtn(true);
+    const container = document.getElementById('container');
+    if (container) {
+      const containerHeight = container.clientHeight; // get the inner height of div container
+      if (window.scrollY > containerHeight / 2) {
+        setShowTopBtn(true);
+        setShowBottomBtn(false);
+      } else {
+        setShowTopBtn(false);
+        setShowBottomBtn(true);
+      }
     }
   };
 
@@ -25,7 +29,10 @@ export const ScrollButton = () => {
   };
 
   const scrollToBottom = () => {
-    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   };
 
   return (

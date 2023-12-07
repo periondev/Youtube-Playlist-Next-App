@@ -5,7 +5,7 @@ export const CTA = () => (
     <Button
       as={ChakraLink}
       isExternal
-      href='https://github.com/PeriYumYum/youtube-playlist-next-app.git'
+      href='https://github.com/periondev/Youtube-Playlist-Next-App.git'
       variant='outline'
       color='teal'
       border='2px'
